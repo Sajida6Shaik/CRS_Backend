@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.springboot.main.dto.CustomerDto;
 import com.springboot.main.exception.InvalidIdException;
 import com.springboot.main.model.Booking;
 import com.springboot.main.model.CarDetails;
@@ -36,12 +37,17 @@ public class CustomerService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	public Customer insertCustomer(Customer customer) {
+	public Customer insertCustomer(CustomerDto customerDto, Customer customer) {
 		User userbody = customer.getUser();
-		User user = new User(userbody.getEmailId(), userbody.getUsername(),
-				passwordEncoder.encode(userbody.getPassword()), "CUSTOMER");
-		user = userRepository.save(user);
-		customer.setUser(user);
+		System.out.println(userbody);
+		userbody.setEmailId(customerDto.getEmailId());
+		userbody.setRole("CUSTOMER");
+		userbody.setUsername(customerDto.getUser().getUsername());
+		userbody.setPassword(passwordEncoder.encode(userbody.getPassword()));
+//		User user = new User(userbody.getEmailId(), userbody.getUsername(),
+//				passwordEncoder.encode(userbody.getPassword()), "CUSTOMER");
+		userbody = userRepository.save(userbody);
+		customer.setUser(userbody);
 		return customerRepository.save(customer);
 	}
 
@@ -79,6 +85,17 @@ public class CustomerService {
 		// TODO Auto-generated method stub
 		return carDetailsRepository.findById(cid);
 
+	}
+
+	public Customer insertCustomer(Customer customer) {
+		// TODO Auto-generated method stub
+		User userbody = customer.getUser();
+
+		User user = new User(userbody.getEmailId(), userbody.getUsername(),
+				passwordEncoder.encode(userbody.getPassword()), "CUSTOMER");
+		userbody = userRepository.save(user);
+		customer.setUser(userbody);
+		return customerRepository.save(customer);
 	}
 
 }

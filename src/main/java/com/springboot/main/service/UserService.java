@@ -10,22 +10,33 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.springboot.main.exception.InvalidIdException;
+import com.springboot.main.model.Host;
 import com.springboot.main.model.User;
+import com.springboot.main.repository.HostRepository;
 import com.springboot.main.repository.UserRepository;
 
 @Service
 public class UserService {
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private HostRepository hostRepository;
 
 	@Autowired
-private PasswordEncoder passwordEncoder;
+	private PasswordEncoder passwordEncoder;
 
 	// TO SAVE A USER IN DB
 
 	public User addNewUser(User user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		return userRepository.save(user);
+		user = userRepository.save(user);
+		Host host = new Host();
+		host.setHostEmail(user.getEmailId());
+		host.setHostName(user.getUsername());
+		host.setHostContact(user.getMobile());
+		host.setUser(user);
+		hostRepository.save(host);
+		return user;
 	}
 
 	// GET ALL USERS

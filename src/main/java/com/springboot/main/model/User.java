@@ -16,6 +16,14 @@ public class User {
 	private String username;
 	private String password;
 	private String role;
+	private String mobile;
+	
+	public String getMobile() {
+		return mobile;
+	}
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
 	//generate getters and setters
 	public User(int id, String emailId, String username, String password, String role) {
 		super();
@@ -31,6 +39,15 @@ public class User {
 		this.username = username;
 		this.password = password;
 		this.role = role;
+	}
+	
+	public User(String emailId, String username, String password, String role, String mobile) {
+		super();
+		this.emailId = emailId;
+		this.username = username;
+		this.password = password;
+		this.role = role;
+		this.mobile = mobile;
 	}
 	public User() {
 		super();

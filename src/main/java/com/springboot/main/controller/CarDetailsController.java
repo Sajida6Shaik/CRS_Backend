@@ -26,7 +26,7 @@ import com.springboot.main.repository.CarDetailsRepository;
 import com.springboot.main.service.CarDetailsService;
 import com.springboot.main.service.HostService;
 
-@CrossOrigin("*")
+@CrossOrigin
 @RestController
 @RequestMapping("/car")
 
@@ -167,6 +167,9 @@ public class CarDetailsController {
 	public ResponseEntity<?> deleteCar(@PathVariable("carid") int carid) {
 		try {
 			CarDetails car = carDetailsService.getById(carid);
+			System.out.println(car);
+			car.setHost(null);
+			carDetailsService.insertCar(car);
 			carDetailsService.deleteCar(carid);
 			return ResponseEntity.ok().body("Car is Deleted");
 		} catch (InvalidIdException e) {

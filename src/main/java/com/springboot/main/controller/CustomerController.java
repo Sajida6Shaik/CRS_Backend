@@ -101,7 +101,7 @@ public class CustomerController {
 			if (customerDto.getEmailId() != null)
 				customer.setEmailId(customerDto.getEmailId());
 
-			customer = customerService.insertCustomer(customer);
+			customer = customerService.insertCustomer(customerDto, customer);
 			return ResponseEntity.ok().body(customer);
 		} catch (InvalidIdException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());

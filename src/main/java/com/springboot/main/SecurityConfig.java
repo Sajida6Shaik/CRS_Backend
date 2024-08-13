@@ -62,7 +62,7 @@ public class SecurityConfig {
 		return http.csrf(csrf -> csrf.disable())
 				.authorizeHttpRequests(requests -> requests.requestMatchers("/users/authenticate", "/users/new",
 						"/car/cardetails", "/users/getallusers", "/users/update/{uid}", "/users/delete/{uid}",
-						"/users/getone/{uid}", "/host/add", "/host/getallHosts", "/host/getone/{hid}",
+						"/users/getone/{uid}", "/host/add", "/host/hosts", "/host/{hid}/cars", "/host/getallHosts", "/host/getone/{hid}",
 						"/host/update/{hid}", "/host/delete/{hid}", "/admin/add", "/admin/getallAdmins",
 						"/admin/getone/{aid}", "/admin/update/{aid}", "/admin/delete/{aid}", "/customer/add",
 						"/customer/getallcustomers", "/customer/delete/{cid}", "/customer/{cid}/bookings",
