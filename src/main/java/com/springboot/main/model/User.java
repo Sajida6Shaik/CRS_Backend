@@ -17,7 +17,42 @@ public class User {
 	private String password;
 	private String role;
 	private String mobile;
+	private int age;
+	private String city;
+	private String area;
 	
+	
+	
+	public User(String emailId, String username, String password, String role, String mobile, int age, String city,
+			String area) {
+		super();
+		this.emailId = emailId;
+		this.username = username;
+		this.password = password;
+		this.role = role;
+		this.mobile = mobile;
+		this.age = age;
+		this.city = city;
+		this.area = area;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getArea() {
+		return area;
+	}
+	public void setArea(String area) {
+		this.area = area;
+	}
 	public String getMobile() {
 		return mobile;
 	}

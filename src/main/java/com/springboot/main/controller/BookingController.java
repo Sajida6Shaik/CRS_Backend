@@ -62,7 +62,7 @@ public class BookingController {
 	}
 
 	// GET ALL BOOKINGS
-//	@PreAuthorize("hasAuthority('HOST') OR hasAuthority('ADMIN')" )
+	@PreAuthorize(" hasAuthority('ADMIN')" )
 	@GetMapping("/getallBookings")
 
 	public List<Booking> getAllBookings(
@@ -75,7 +75,7 @@ public class BookingController {
 	}
 
 	// GET ONE BOOKINGS
-//	@PreAuthorize("hasAuthority('HOST') OR hasAuthority('ADMIN')" )
+	@PreAuthorize(" hasAuthority('ADMIN')" )
 	@GetMapping("/getone/{bid}")
 	public ResponseEntity<?> getone(@PathVariable("bid") int bid) throws InvalidIdException {
 		try {
@@ -89,7 +89,7 @@ public class BookingController {
 
  
 	// UPDATE BOOKING
-//	@PreAuthorize(" hasAuthority('ADMIN')" )
+	@PreAuthorize(" hasAuthority('ADMIN')" )
 	@PutMapping("/update/{bid}")
 	public ResponseEntity<?> updateBooking(@PathVariable("bid") int bid, @RequestBody Booking newBooking)
 			throws InvalidIdException {
@@ -125,7 +125,7 @@ public class BookingController {
 	}
 
 	// DELETE BOOKING
-//	@PreAuthorize(" hasAuthority('ADMIN')" )
+	@PreAuthorize(" hasAuthority('ADMIN')" )
 
 	@DeleteMapping("/delete/{bid}")
 	public ResponseEntity<?> deleteBooking(@PathVariable("bid") int bid) throws InvalidIdException {

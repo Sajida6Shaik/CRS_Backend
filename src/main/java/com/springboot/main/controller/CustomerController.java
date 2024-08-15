@@ -42,21 +42,21 @@ public class CustomerController {
 	}
 
 	// GET ALL BOOKINGS MADE BY CUSTOMER
-//	@PreAuthorize("hasAuthority('CUSTOMER') OR hasAuthority('ADMIN')" )
+  
 	@GetMapping("/{cid}/bookings")
 	public Optional<Booking> getBookingsMadeByCustomer(@PathVariable int cid) {
 		return customerService.getBookingsMadeByCustomer(cid);
 	}
 
 	// GET ALL CARS RENTED BY A SPECIFIC CUSTOMER
-//	@PreAuthorize("hasAuthority('CUSTOMER') OR hasAuthority('ADMIN')" )
+ 
 	@GetMapping("/{cid}/cars")
 	public Optional<CarDetails> getCarsRentedByCustomer(@PathVariable int cid) {
 		return customerService.getCarsRentedByCustomer(cid);
 	}
 
 	// GET ALL CUSTOMERS
-//	@PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/getallcustomers")
 
 	public List<Customer> getAllCustomers(
@@ -69,7 +69,7 @@ public class CustomerController {
 	}
 
 	// GET CUSTOMER BY ID
-//	@PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/getone/{cid}")
 	public ResponseEntity<?> getById(@PathVariable("cid") int cid) {
 
@@ -85,7 +85,7 @@ public class CustomerController {
 
 	// UPDATE CUSTOMER
 
-//	@PreAuthorize("hasAuthority('CUSTOMER') OR hasAuthority('ADMIN')")
+	 
 	@PutMapping("/update/{cid}")
 	public ResponseEntity<?> updateCustomer(@PathVariable("cid") int cid, @RequestBody CustomerDto customerDto) {
 		try {
@@ -109,7 +109,7 @@ public class CustomerController {
 	}
 
 	// DELETE A CUSTOMER
-//	@PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 
 	@DeleteMapping("/delete/{cid}")
 	public ResponseEntity<?> deleteCustomer(@PathVariable("cid") int cid) {

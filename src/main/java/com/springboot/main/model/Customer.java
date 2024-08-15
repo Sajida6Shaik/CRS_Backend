@@ -1,5 +1,6 @@
 package com.springboot.main.model;
 
+import java.util.Date;
 import java.time.LocalDate;
 
 import jakarta.persistence.CascadeType;
@@ -17,8 +18,34 @@ public class Customer {
 	private int age;
 	private String city;
 	private String area;
-	private LocalDate date;
+	private Date date;
 	private String emailId;
+	private String mobile;
+	
+	
+
+	public Customer() {
+		super();
+	}
+
+	public Customer(int age, String city, String area, Date date, String emailId, String mobile, User user) {
+		super();
+		this.age = age;
+		this.city = city;
+		this.area = area;
+		this.date = date;
+		this.emailId = emailId;
+		this.mobile = mobile;
+		this.user = user;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
 
 	@OneToOne(cascade = CascadeType.ALL)
 
@@ -58,11 +85,11 @@ public class Customer {
 		this.area = area;
 	}
 
-	public LocalDate getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

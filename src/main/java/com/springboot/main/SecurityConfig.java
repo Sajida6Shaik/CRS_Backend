@@ -61,21 +61,27 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http.csrf(csrf -> csrf.disable())
 				.authorizeHttpRequests(requests -> requests.requestMatchers("/users/authenticate", "/users/new",
+						
 						"/car/cardetails", "/users/getallusers", "/users/update/{uid}", "/users/delete/{uid}",
+						
 						"/users/getone/{uid}", "/host/add", "/host/hosts", "/host/{hid}/cars", "/host/getallHosts", "/host/getone/{hid}",
+						
 						"/host/update/{hid}", "/host/delete/{hid}", "/admin/add", "/admin/getallAdmins",
+						
 						"/admin/getone/{aid}", "/admin/update/{aid}", "/admin/delete/{aid}", "/customer/add",
+						
 						"/customer/getallcustomers", "/customer/delete/{cid}", "/customer/{cid}/bookings",
+						
 						"/customer/{cid}/cars", "/customer/getone/{cid}", "/customer/update/{cid}", "/car/add/{hid}",
 						"/car/getallcars", "/car/delete/{carid}", "/car/getone/{carid}", "/car/update/{carid}",
 						"/customercar/add/{cid}/{carid}", "/customercar/getallcustomercar",
-						"/,customercar/getone/{custid}", "/customercar/update/{custid}", "/customercar/delete/{custid}",
+						"/customercar/getone/{custid}", "/customercar/update/{custid}", "/customercar/delete/{custid}",
 						"/booking/add/{cid}/{carid}", "/booking/getallBookings", "/booking/getone/{bid}",
 						"/booking/update/{bid}", "/booking/delete/{bid}", "/routes/add/{bid}", "/routes/getallRoutes",
 						"/routes/getone/{rid}", "/routes/update/{rid}", "/routes/delete/{rid}", "/payment/add/{cid}",
 						"/payment/getallpayments", "/payment/getone/{pid}", "/payment/update/{pid}",
 						"/payment/delete/{pid}").permitAll())
-				.authorizeHttpRequests(requests -> requests.requestMatchers("/payment/**").authenticated())
+				.authorizeHttpRequests(requests -> requests.requestMatchers(" /payment/** ").authenticated())
 				.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authenticationProvider(authenticationProvider())
 				.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class).build();

@@ -38,7 +38,7 @@ public class CustomerCarController {
 	private CustomerService customerService;
 	@Autowired
 	private CarDetailsService carService;
-//	@PreAuthorize("hasAuthority('ADMIN')" )
+ 
 	@PostMapping("/add/{cid}/{carid}")
 	public ResponseEntity<?> insertCustomerCar(@PathVariable("cid") int cid, @PathVariable("carid") int carid,
 			@RequestBody CustomerCar customerCar) {
@@ -56,7 +56,7 @@ public class CustomerCarController {
 	}
 
 	// GET ALL CUSTOMERCARS
-//	@PreAuthorize(" hasAuthority('ADMIN')" )
+ 
 	@GetMapping("/getallcustomercar")
 	public List<CustomerCar> getAll(@RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
 			@RequestParam(value = "size", required = false, defaultValue = "10000000") Integer size) {
@@ -67,7 +67,7 @@ public class CustomerCarController {
 	
 	
 	// GET MAPPING FOR ONE CUSTOMER CAR
-//	@PreAuthorize(" hasAuthority('ADMIN')" )
+ 
 	@GetMapping("/getone/{custid}")
 	public ResponseEntity<?> getone(@PathVariable("custid") int custid) throws InvalidIdException {
 		try {
@@ -80,7 +80,7 @@ public class CustomerCarController {
 	}
 
 	// PUT MAPPING
-//	@PreAuthorize("hasAuthority('ADMIN')" )
+ 
 	@PutMapping("/update/{custid}")
 	public ResponseEntity<?> updateCustomerCar(@PathVariable("custid") int custid,
 			@RequestBody CustomerCar newCustomerCar) throws InvalidIdException {
@@ -98,8 +98,7 @@ public class CustomerCarController {
 		return ResponseEntity.ok().body(oldcustomercar);
 	}
 
-	// DELETE A CUSTOMERCAR
-//	@PreAuthorize("hasAuthority('ADMIN')" )
+	// DELETE A CUSTOMERCAR 
 	@DeleteMapping("/delete/{custid}")
 	public ResponseEntity<?> deleteCustomerCar(@PathVariable("custid") int custid) {
 		try {

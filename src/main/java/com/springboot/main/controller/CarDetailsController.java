@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,7 +42,7 @@ public class CarDetailsController {
 	private CarDetailsRepository carDetailsRepository;
 
 	/* Insert Car by Hostid */
-//	@PreAuthorize("hasAuthority('HOST') OR hasAuthority('ADMIN')")
+	@PreAuthorize("hasAuthority('HOST') OR hasAuthority('ADMIN')")
 	@PostMapping("/add/{hid}")
 
 	public ResponseEntity<?> insertCar(@PathVariable("hid") int hid, @RequestBody CarDetails car) {
@@ -59,7 +60,7 @@ public class CarDetailsController {
 	}
 
 	// GET ALL CARS MANAGED BY HOSTS
-//	@PreAuthorize("hasAuthority('CUSTOMER') OR hasAuthority('ADMIN') OR hasAuthority('HOST')")
+	@PreAuthorize("hasAuthority('CUSTOMER') OR hasAuthority('ADMIN') OR hasAuthority('HOST')")
 	@GetMapping("/getallcars")
 
 	public List<CarDetails> getAllCars(@RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
@@ -71,7 +72,7 @@ public class CarDetailsController {
 	}
 
 	// GET CAR BY ID
-//	@PreAuthorize("hasAuthority('ADMIN') OR hasAuthority('HOST') OR hasAuthority('CUSTOMER')")
+ 
 	@GetMapping("/getone/{carid}")
 
 	public ResponseEntity<?> getById(@PathVariable("carid") int carid) {
@@ -88,7 +89,7 @@ public class CarDetailsController {
 	}
 
 	// UPDATE CAR
-//	@PreAuthorize("hasAuthority('HOST') OR hasAuthority('ADMIN')")
+@PreAuthorize("hasAuthority('HOST') OR hasAuthority('ADMIN')")
 	@PutMapping("/update/{carid}")
 
 	public ResponseEntity<?> UpdateCar(@PathVariable("carid") int carid, @RequestBody CarDetails newCar) {
@@ -161,7 +162,7 @@ public class CarDetailsController {
 	}
 
 	// DELETE A CAR
-//	@PreAuthorize("hasAuthority('ADMIN') OR hasAuthority('HOST')")
+	@PreAuthorize("hasAuthority('ADMIN') OR hasAuthority('HOST')")
 	@DeleteMapping("/delete/{carid}")
 
 	public ResponseEntity<?> deleteCar(@PathVariable("carid") int carid) {

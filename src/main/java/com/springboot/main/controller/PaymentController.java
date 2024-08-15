@@ -51,7 +51,7 @@ public class PaymentController {
 	}
 
 	// GET ALL PAYMENTS
-//	@PreAuthorize("hasAuthority('ADMIN')" )
+	@PreAuthorize("hasAuthority('ADMIN')" )
 	@GetMapping("/getallpayments")
 	public List<Payment> getAll(@RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
 			@RequestParam(value = "size", required = false, defaultValue = "10000000") Integer size) {
@@ -60,7 +60,7 @@ public class PaymentController {
 	}
 
 	// GET ONE PAYMENT
-//	@PreAuthorize("hasAuthority('ADMIN')" )
+	@PreAuthorize("hasAuthority('ADMIN')" )
 	@GetMapping("/getone/{pid}")
 	public ResponseEntity<?> getone(@PathVariable("pid") int pid) throws InvalidIdException {
 		try {
@@ -73,7 +73,7 @@ public class PaymentController {
 	}
 
 	// UPDATE PAYMENT
-//	@PreAuthorize("hasAuthority('ADMIN')" )
+ 
 	@PutMapping("/update/{pid}")
 	public ResponseEntity<?> updatePayment(@PathVariable("pid") int pid, @RequestBody PaymentDto paymentDto)
 			throws InvalidIdException {
@@ -91,7 +91,7 @@ public class PaymentController {
 	}
 
 	// DELETE AN PAYMENT
-//	@PreAuthorize("hasAuthority('ADMIN')" )
+ 
 	@DeleteMapping("/delete/{pid}")
 	public ResponseEntity<?> deletePayment(@PathVariable("pid") int pid) throws InvalidIdException {
 

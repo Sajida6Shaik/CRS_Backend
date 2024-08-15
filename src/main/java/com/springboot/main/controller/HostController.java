@@ -55,7 +55,7 @@ public class HostController {
 	}
 
 	// GET ALL HOSTS
-//	@PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/getallHosts")
 
 	public List<Host> getAllHosts(@RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
@@ -67,7 +67,7 @@ public class HostController {
 	}
 
 	// GET HOST BY ID
-//	@PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/getone/{hid}")
 	public ResponseEntity<?> getById(@PathVariable("hid") int hid) {
 		try {
@@ -82,7 +82,7 @@ public class HostController {
 
 	// UPDATE HOST DATA
 
-//	@PreAuthorize("hasAuthority('HOST') OR hasAuthority('ADMIN')")
+	@PreAuthorize(" hasAuthority('ADMIN')")
 	@PutMapping("/update/{hid}")
 	public ResponseEntity<?> updateHost(@PathVariable("hid") int hid, @RequestBody HostDto hostDto) {
 		try {
@@ -102,7 +102,7 @@ public class HostController {
 	}
 
 	// DELETE AN HOST
-//	@PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@DeleteMapping("/delete/{hid}")
 	public ResponseEntity<?> deleteHost(@PathVariable("hid") int hid) throws InvalidIdException {
 
@@ -132,7 +132,7 @@ public class HostController {
 	
 
 	// GET ALL CARS MANAGED BY SPECIFIC HOST
-//	@PreAuthorize("hasAuthority('HOST') OR hasAuthority('ADMIN')")
+	 
 	@GetMapping("/{hid}/cars")
 	public List<CarDetails> getCarsManagedByHost(@PathVariable int hid) {
 		return hostService.getCarsManagedByHost(hid);
@@ -140,7 +140,7 @@ public class HostController {
 	
 	
 	
-	 
+	@PreAuthorize("hasAuthority('ADMIN') OR hasAuthority('HOST')")
 	@GetMapping("/hosts")
 	public List<Host> getHosts() {
 		return hostService.getHosts();

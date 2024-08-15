@@ -2,6 +2,7 @@
 package com.springboot.main.dto;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import com.springboot.main.model.User;
 
@@ -18,7 +19,7 @@ public class CustomerDto {
 	private int age;
 	private String city;
 	private String area;
-	private LocalDate date;
+	private Date date;
 	private String emailId;
 
 	@OneToOne
@@ -58,11 +59,11 @@ public class CustomerDto {
 		this.area = area;
 	}
 
-	public LocalDate getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

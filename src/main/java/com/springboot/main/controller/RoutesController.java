@@ -35,7 +35,7 @@ public class RoutesController {
 	@Autowired
 	private BookingService bookingService;
 
-//	@PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping("/add/{bid}")
 	public ResponseEntity<?> insertRoutes(@PathVariable("bid") int bid, @RequestBody Routes routes) {
 		try {
@@ -51,8 +51,7 @@ public class RoutesController {
 		}
 	}
 
-	// GET ALL SEARCH ROUTES
-//	@PreAuthorize("hasAuthority('ADMIN')")
+	// GET ALL SEARCH ROUTES 
 	@GetMapping("/getallRoutes")
 	public List<Routes> getAll(@RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
 			@RequestParam(value = "size", required = false, defaultValue = "10000000") Integer size) {
@@ -60,8 +59,7 @@ public class RoutesController {
 		return routesService.getAll(pageable);
 	}
 
-	// GET ONE SEARCH
-//	@PreAuthorize("hasAuthority('ADMIN')")
+	// GET ONE SEARCH 
 	@GetMapping("/getone/{rid}")
 	public ResponseEntity<?> getone(@PathVariable("rid") int rid) throws InvalidIdException {
 		try {
@@ -74,7 +72,7 @@ public class RoutesController {
 	}
 
 	// UPDATE ROUTES
-//	@PreAuthorize("hasAuthority('ADMIN')")
+ 
 	@PutMapping("/update/{rid}")
 	public ResponseEntity<?> updateRoutes(@PathVariable("rid") int rid, @RequestBody RoutesDto routesDto)
 			throws InvalidIdException {
@@ -103,7 +101,7 @@ public class RoutesController {
 	}
 
 	// DELETE AN SEARCH ROUTES
-//	@PreAuthorize("hasAuthority('ADMIN')")
+ 
 	@DeleteMapping("/delete/{rid}")
 	public ResponseEntity<?> deleteRoutes(@PathVariable("rid") int rid) throws InvalidIdException {
 

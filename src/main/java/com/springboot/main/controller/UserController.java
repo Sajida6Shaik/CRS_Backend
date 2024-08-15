@@ -61,7 +61,7 @@ public class UserController {
 				new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
 		if (authentication.isAuthenticated()) {
  
-//			return jwtService.generateToken(authRequest.getUsername());
+ 
 			JWTAuthResponse  jwtAuthResponse=jwtService.generateToken(authRequest.getUsername());
 			
 			return new ResponseEntity<>(jwtAuthResponse,HttpStatus.OK);
@@ -73,7 +73,7 @@ public class UserController {
 	}
 
 	// GET ALL USERS
-//	@PreAuthorize(" hasAuthority('ADMIN')")
+ 
 	@GetMapping("/getallusers")
 
 	public List<User> getAllUsers(@RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
@@ -85,7 +85,7 @@ public class UserController {
 	}
 
 	// GET USER BY ID
-//	@PreAuthorize(" hasAuthority('ADMIN')")
+	@PreAuthorize(" hasAuthority('ADMIN')")
 	@GetMapping("/getone/{uid}")
 	public ResponseEntity<?> getByUserId(@PathVariable("uid") int uid) {
 		try {
@@ -100,7 +100,7 @@ public class UserController {
 
 	// UPDATE USER
 
-//	@PreAuthorize("hasAuthority('CUSTOMER') OR hasAuthority('ADMIN')")
+	@PreAuthorize("hasAuthority('CUSTOMER') OR hasAuthority('ADMIN')")
 	@PutMapping("/update/{uid}")
 	public ResponseEntity<?> updateUser(@PathVariable("uid") int uid, @RequestBody User newUser) {
 		try {
@@ -128,7 +128,7 @@ public class UserController {
 	}
 
 	// DELETE USER
-//	@PreAuthorize("hasAuthority('CUSTOMER') OR hasAuthority('ADMIN')")
+	@PreAuthorize("hasAuthority('CUSTOMER') OR hasAuthority('ADMIN')")
 	@DeleteMapping("/delete/{uid}")
 	public ResponseEntity<?> deleteUser(@PathVariable("uid") int uid) {
 		try {
